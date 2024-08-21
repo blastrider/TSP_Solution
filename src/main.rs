@@ -61,14 +61,17 @@ fn tsp_bellman_held_karp(distances: Vec<Vec<i64>>) -> (i64, Vec<usize>) {
 }
 
 fn main() {
+    // Distances en kilomètres entre Paris, Thoiry, Versailles et Trappes
     let distances = vec![
-        vec![0, 10, 15, 20],
-        vec![10, 0, 35, 25],
-        vec![15, 35, 0, 30],
-        vec![20, 25, 30, 0],
+        vec![0, 46, 18, 28],  // Paris
+        vec![46, 0, 29, 22],  // Thoiry
+        vec![18, 29, 0, 8],   // Versailles
+        vec![28, 22, 8, 0],   // Trappes
     ];
 
+    let villes = vec!["Paris", "Thoiry", "Versailles", "Trappes"];
+    
     let (cost, path) = tsp_bellman_held_karp(distances);
-    println!("Le coût minimum du TSP est : {}", cost);
-    println!("L'ordre des villes visitées est : {:?}", path);
+    println!("Le coût minimum du TSP est : {} km", cost);
+    println!("L'ordre des villes visitées est : {:?}", path.iter().map(|&i| villes[i]).collect::<Vec<_>>());
 }
